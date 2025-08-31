@@ -23,6 +23,7 @@ blogRouter.post('/delete', auth, deleteBlogById);
 blogRouter.post('/toggle-publish', auth, togglePublish);
 
 // Client routes
+blogRouter.get('/all-public', getAllBlogs); 
 blogRouter.get('/', getPublishedBlogs);             
 blogRouter.get('/:blogId', getBlogById);
 

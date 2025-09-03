@@ -1,4 +1,64 @@
 
+// import React, { useEffect, useState } from 'react'
+// import BlogTableItem from '../../components/admin/BlogTableItem';
+// import { useAppContext } from '../../context/AppContext';
+// import toast from 'react-hot-toast';
+
+// const ListBlog = () => {
+//   const [blogs, setBlogs] = useState([]);
+//   const { axios } = useAppContext();
+
+//   const fetchBlogs = async () => {
+//     try {
+      
+//       const { data } = await axios.get('/api/blog/all');  
+//       if (data.success) {
+//         setBlogs(data.blogs);
+//       } else {
+//         toast.error(data.message);
+//       }
+//     } catch (error) {
+//       toast.error(error.response?.data?.message || error.message);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchBlogs();
+//   }, []);
+
+//   return (
+//     <div className='flex-1 pt-5 px-5 sm:pt-12 sm:pl-16 bg-blue-50/50'>
+//       <h1>All Blogs</h1>
+//       <div className='relative h-4/5 mt-4 max-w-4xl overflow-x-auto shadow rounded-lg scrollbar-hide bg-white'>
+//         <table className='w-full text-sm text-gray-500'>
+//           <thead className='text-xs text-gray-600 text-left uppercase'>
+//             <tr>
+//               <th scope='col' className='px-2 py-2'> S.No. </th>
+//               <th scope='col' className='px-2 py-2'> Blog Title </th>
+//               <th scope='col' className='px-2 py-2 max-sm:hidden'> Date </th>
+//               <th scope='col' className='px-2 py-2 max-sm:hidden'> Status </th>
+//               <th scope='col' className='px-2 py-2'> Actions </th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {blogs.map((blog, index) => (
+//               <BlogTableItem
+//                 key={blog._id}
+//                 blog={blog}
+//                 fetchBlogs={fetchBlogs}
+//                 index={index + 1}
+//               />
+//             ))}
+//           </tbody>
+//         </table>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ListBlog;
+
+
 import React, { useEffect, useState } from 'react'
 import BlogTableItem from '../../components/admin/BlogTableItem';
 import { useAppContext } from '../../context/AppContext';
@@ -10,7 +70,6 @@ const ListBlog = () => {
 
   const fetchBlogs = async () => {
     try {
-      
       const { data } = await axios.get('/api/blog/all');  
       if (data.success) {
         setBlogs(data.blogs);
@@ -28,16 +87,17 @@ const ListBlog = () => {
 
   return (
     <div className='flex-1 pt-5 px-5 sm:pt-12 sm:pl-16 bg-blue-50/50'>
-      <h1>All Blogs</h1>
-      <div className='relative h-4/5 mt-4 max-w-4xl overflow-x-auto shadow rounded-lg scrollbar-hide bg-white'>
+      <h1 className='text-xl font-semibold mb-4'>All Blogs</h1>
+      <div className='relative h-4/5 mt-4 max-w-5xl overflow-x-auto shadow rounded-lg scrollbar-hide bg-white'>
         <table className='w-full text-sm text-gray-500'>
-          <thead className='text-xs text-gray-600 text-left uppercase'>
+          <thead className='text-xs text-gray-600 text-left uppercase bg-gray-100'>
             <tr>
-              <th scope='col' className='px-2 py-2'> S.No. </th>
-              <th scope='col' className='px-2 py-2'> Blog Title </th>
-              <th scope='col' className='px-2 py-2 max-sm:hidden'> Date </th>
-              <th scope='col' className='px-2 py-2 max-sm:hidden'> Status </th>
-              <th scope='col' className='px-2 py-2'> Actions </th>
+              <th scope='col' className='px-2 py-3'>S.No.</th>
+              <th scope='col' className='px-2 py-3'>Blog Title</th>
+              <th scope='col' className='px-2 py-3'>Author</th> {/* ✅ Added */}
+              <th scope='col' className='px-2 py-3 max-sm:hidden'>Date</th>
+              <th scope='col' className='px-2 py-3 max-sm:hidden'>Status</th>
+              <th scope='col' className='px-2 py-3'>Actions</th>
             </tr>
           </thead>
           <tbody>
